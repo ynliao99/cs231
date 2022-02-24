@@ -14,7 +14,8 @@ using namespace std;
 
 // use long double to guarantee that even larger numbers can be processed
 
-class Stats {
+class Stats
+{
 	public:
 		Stats (vector<long double> nums_array);
 		void calcAvg();
@@ -30,10 +31,12 @@ class Stats {
 
 };
 
-Stats::Stats(vector<long double> nums_array) {
+Stats::Stats(vector<long double> nums_array)
+{
 	numbers = nums_array;
 	size = numbers.size();
-	for (int i = 0; i< size; i++) {
+	for (int i = 0; i< size; i++)
+	{
 		sum += numbers[i];
 	}
 	//cout << size;
@@ -41,14 +44,17 @@ Stats::Stats(vector<long double> nums_array) {
 	calcStdev();
 }
 
-void Stats::calcAvg() {
+void Stats::calcAvg()
+{
 	avg = sum / size;
 }
 
-void Stats::calcStdev() {
+void Stats::calcStdev()
+{
 	calcAvg(); // make sure avg is accurate
 	long double temp_sum;
-	for(int i = 0; i < size ; i++) {
+	for(int i = 0; i < size ; i++)
+	{
 		temp_sum += pow(numbers[i] - avg, 2);
 	}
 	stdev = sqrt( temp_sum / size );
@@ -56,20 +62,25 @@ void Stats::calcStdev() {
 
 //PRINT DATA
 
-void Stats::printArray() {
+void Stats::printArray()
+{
 	cout<<"\nNumbers in the array are: ";
-	for(int i=0; i < size - 1 ; i++) {
+	for(int i=0; i < size - 1 ; i++)
+	{
 		cout << numbers[i] <<", ";
 	}
 	cout << numbers[size-1];
 	cout<<endl;
 }
 
-void Stats::printData(int field) {
-	switch (field) {
+void Stats::printData(int field)
+{
+	switch (field)
+	{
 		case 0:
 			cout<<"\nNumbers in the array are: ";
-			for(int i=0; i < size - 1 ; i++) {
+			for(int i=0; i < size - 1 ; i++)
+			{
 				cout << numbers[i] <<"; ";
 			}
 			cout << numbers[size-1];
@@ -90,26 +101,31 @@ void Stats::printData(int field) {
 	}
 }
 
-vector<long double> buildArray() {
+vector<long double> buildArray()
+{
 	long double temp[100];
 	int n = 0;
 	char x;
 	cout<<"Please enter a group (max 100) of numbers, use SPACE to separate them: ";
-	while((x=getchar())!='\n') {
+	while((x=getchar())!='\n')
+	{
 
-		if(x!=' ' or x =='.') { 
+		if(x!=' ' or x =='.')
+		{ 
 			ungetc(x,stdin);
 			cin>>temp[n++];
 		}
 	}
 	vector<long double> nums;
-	for (int i = 0; i<n ; i++) {
+	for (int i = 0; i<n ; i++)
+	{
 		nums.push_back(temp[i]); //add numbers to the new array
 	}
 	return nums;
 }
 
-int main() {
+int main()
+{
 
 	Stats myStat1(buildArray()); // Construct a object
 
