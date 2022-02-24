@@ -14,13 +14,12 @@ using namespace std;
 
 // use long double to guarantee that even larger numbers can be processed
 
-class Stats
-{
+class Stats {
 	public:
 		Stats (vector<long double> nums_array);
 		void calcAvg();
 		void calcStdev();
-		void printArray(int);
+		void printArray();
 		void printData(int field);
 	private:
 		vector<long double> numbers;
@@ -28,14 +27,13 @@ class Stats
 		long double sum = 0;
 		long double avg = 0;
 		long double stdev = 0;
-		
+
 };
 
-Stats::Stats(vector<long double> nums_array)
-{
+Stats::Stats(vector<long double> nums_array) {
 	numbers = nums_array;
 	size = numbers.size();
-	for (int i = 0; i< size; i++){
+	for (int i = 0; i< size; i++) {
 		sum += numbers[i];
 	}
 	//cout << size;
@@ -43,89 +41,82 @@ Stats::Stats(vector<long double> nums_array)
 	calcStdev();
 }
 
-void Stats::calcAvg()
-{
+void Stats::calcAvg() {
 	avg = sum / size;
 }
 
-void Stats::calcStdev()
-{
+void Stats::calcStdev() {
 	calcAvg(); // make sure avg is accurate
 	long double temp_sum;
-	for(int i = 0; i < size ; i++){
-        temp_sum += pow(numbers[i] - avg, 2);
-    }
+	for(int i = 0; i < size ; i++) {
+		temp_sum += pow(numbers[i] - avg, 2);
+	}
 	stdev = sqrt( temp_sum / size );
 }
 
 //PRINT DATA
 
-void Stats::printArray()
-{
+void Stats::printArray() {
 	cout<<"\nNumbers in the array are: ";
-	for(int i=0; i < size - 1 ; i++){
-        cout << numbers[i] <<", ";
-    }
-    cout << numbers[size-1];
-    cout<<endl;
+	for(int i=0; i < size - 1 ; i++) {
+		cout << numbers[i] <<", ";
+	}
+	cout << numbers[size-1];
+	cout<<endl;
 }
 
-void Stats::printData(int field)
-{
-	switch (field){
+void Stats::printData(int field) {
+	switch (field) {
 		case 0:
 			cout<<"\nNumbers in the array are: ";
-			for(int i=0; i < size - 1 ; i++){
-        		cout << numbers[i] <<"; ";
-    		}
-    		cout << numbers[size-1];
-    		cout<<endl;
-    		break;
-    	case 1:
-    		cout<<"\nAvgerage :"<< avg << endl;	
-    		break;
-    	case 2:
-    		cout<<"\nStandard Deviation :"<< stdev << endl;
-    		break;
-    	case 3:
-    		cout<<"\nSummary :"<< sum << endl;
-    		break;
-    	case 4:
-    		cout<<"\nArray Size :"<< size << endl;
-    		break;
+			for(int i=0; i < size - 1 ; i++) {
+				cout << numbers[i] <<"; ";
+			}
+			cout << numbers[size-1];
+			cout<<endl;
+			break;
+		case 1:
+			cout<<"\nAvgerage :"<< avg << endl;
+			break;
+		case 2:
+			cout<<"\nStandard Deviation :"<< stdev << endl;
+			break;
+		case 3:
+			cout<<"\nSummary :"<< sum << endl;
+			break;
+		case 4:
+			cout<<"\nArray Size :"<< size << endl;
+			break;
 	}
 }
 
-vector<long double> buildArray(){
+vector<long double> buildArray() {
 	long double temp[100];
 	int n = 0;
 	char x;
 	cout<<"Please enter a group (max 100) of numbers, use SPACE to separate them: ";
-    while((x=getchar())!='\n')
-    {
-    
-        if(x!=' ' or x =='.')// use SPACE to seperate numbers, **make sure the DECIMAL POINT can be processed correctly
-        {
-            ungetc(x,stdin);
-            cin>>temp[n++];
-        }
-    }
-    vector<long double> nums;
-    for (int i = 0; i<n ;i++){
-        nums.push_back(temp[i]); //add numbers to the new array
-    }
-    return nums;
+	while((x=getchar())!='\n') {
+
+		if(x!=' ' or x =='.') { 
+			ungetc(x,stdin);
+			cin>>temp[n++];
+		}
+	}
+	vector<long double> nums;
+	for (int i = 0; i<n ; i++) {
+		nums.push_back(temp[i]); //add numbers to the new array
+	}
+	return nums;
 }
 
-int main()
-{
-    
-    Stats myStat1(buildArray()); // Construct a object
-    
-    //myStat1.printData(3);
-    myStat1.printArray();
-    myStat1.printData(1);
-    myStat1.printData(2);
-    
-    return 0;
+int main() {
+
+	Stats myStat1(buildArray()); // Construct a object
+
+	//myStat1.printData(3);
+	myStat1.printArray();
+	myStat1.printData(1);
+	myStat1.printData(2);
+
+	return 0;
 }
