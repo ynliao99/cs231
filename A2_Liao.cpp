@@ -2,8 +2,8 @@
 //  Programming Assignment 2
 //	Author: Yunan Liao
 //	Calculate summary, average, stdev
-
-// Edit History:
+//	https://github.com/ynliao99/cs231/blob/main/A2_Liao.cpp
+//	Edit History:
 //		2/23 Initial Version
 
 #include <vector>
@@ -14,7 +14,8 @@ using namespace std;
 
 // use long double to guarantee that even larger numbers can be processed
 
-class Stats{
+class Stats
+{
 	public:
 		Stats (vector<long double> nums_array);
 		void calcAvg();
@@ -30,7 +31,8 @@ class Stats{
 		
 };
 
-Stats::Stats(vector<long double> nums_array){
+Stats::Stats(vector<long double> nums_array)
+{
 	numbers = nums_array;
 	size = numbers.size();
 	for (int i = 0; i< size; i++){
@@ -41,11 +43,13 @@ Stats::Stats(vector<long double> nums_array){
 	calcStdev();
 }
 
-void Stats::calcAvg(){
+void Stats::calcAvg()
+{
 	avg = sum / size;
 }
 
-void Stats::calcStdev(){
+void Stats::calcStdev()
+{
 	calcAvg(); // make sure avg is accurate
 	long double temp_sum;
 	for(int i = 0; i < size ; i++){
@@ -56,7 +60,8 @@ void Stats::calcStdev(){
 
 //PRINT DATA
 
-void Stats::printArray(){
+void Stats::printArray()
+{
 	cout<<"\nNumbers in the array are: ";
 	for(int i=0; i < size - 1 ; i++){
         cout << numbers[i] <<", ";
@@ -65,7 +70,8 @@ void Stats::printArray(){
     cout<<endl;
 }
 
-void Stats::printData(int field){
+void Stats::printData(int field)
+{
 	switch (field){
 		case 0:
 			cout<<"\nNumbers in the array are: ";
@@ -111,12 +117,13 @@ vector<long double> buildArray(){
     return nums;
 }
 
-int main(){
+int main()
+{
     
     Stats myStat1(buildArray()); // Construct a object
     
     //myStat1.printData(3);
-    myStat1.printData(0);
+    myStat1.printArray();
     myStat1.printData(1);
     myStat1.printData(2);
     
